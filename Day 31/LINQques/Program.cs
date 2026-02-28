@@ -188,17 +188,6 @@ namespace LINQques
                 Console.WriteLine(avg.Class + " " + avg.Average);
             }
 
-            //var belowClassAverage = students.Where(x => x.Marks < x.averageMarks);
-            //foreach (var avg in averageMarks)
-            //{
-            //    Console.WriteLine("Student below Average in class " + avg.Class);
-            //    var classAvg = students.Where(x => x.Class == avg.Class && x.Marks < avg.Average);
-            //    foreach (var item in classAvg)
-            //    {
-            //        Console.WriteLine(item.Name);
-            //    }
-            //}               //this works but not a good query
-
             var belowClassAverage = students.GroupBy(x => x.Class).Select(x => new
             {
                 Class = x.Key,
