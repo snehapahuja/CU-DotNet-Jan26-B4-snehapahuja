@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script>
+        function calEMI(){
+            let p = parseFloat(document.getElementById('amount').value);
+            let aR = parseFloat(document.getElementById('interest').value)
+            let n = parseInt(document.getElementById('tenure').value);
+            let r = aR / 12 / 100;
+            let emi = p * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+            let tableCon = "";
+            let balance = p; 
+            for (let index = 1; index <= n; index++) {
+
+                let interest = balance * r;
+                let principal = emi - interest;
+                let remaining = balance - principal;
+                tableCon += "<tr>" +
+                "<td>" + index + "</td>" +
+                "<td>" + balance.toFixed(2) + "</td>" +
+                "<td>" + emi.toFixed(2) + "</td>" +
+                "<td>" + principal.toFixed(2) + "</td>" +
+                "<td>" + interest.toFixed(2) + "</td>" +
+                "<td>" + remaining.toFixed(2) + "</td>" +
+                "</tr>";
+                balance = remaining;
+            }
+            document.getElementById("scheduleBody").innerHTML = tableCon;
+        }   
+    </script>
+</head>
+<body>
+    <form onsubmit = "calEMI(); return false;">
+        <label>Enter loan amount</label>
+        <input type="number" id = "amount" /><br><br>
+        <label>Enter annual interest rate(%)</label>
+        <input type="text"  id="interest" /><br><br>
+        <label>Enter Tenure(in months)</label>
+        <input type="number" id="tenure"/><br><br>
+        <input type = "submit" value = "Calculate EMI" /> 
+    </form>
+    <br/>
+<div class="container mt-4">
+    <table class="table table-bordered table-striped table-hover w-75 mx-auto">
+        <thead class="table-dark">
+            <tr>
+                <th>SNO</th>
+                <th>Loan Left</th>
+                <th>EMI</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Remaining Balance</th>
+            </tr>
+        </thead>
+        <tbody id="scheduleBody" class="table-light">
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

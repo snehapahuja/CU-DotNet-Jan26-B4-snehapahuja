@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        function showValue(obj){
+            let vals = document.getElementsByClassName("val");
+            let ans = document.getElementById("ans");
+            if(obj.value == ""){
+                obj.style.backgroundColor = "red";
+            }
+            else if(isNaN(obj.value)){
+                obj.style.backgroundColor = "yellow";
+            }
+            else{
+                obj.style.backgroundColor = "white";
+            }
+            let v1 = vals[0].value;
+            let v2 = vals[1].value;
+            if(v1 != "" && v2 != "" && !isNaN(v1) && !isNaN(v2)){
+                ans.value = Number(v1) + Number(v2);
+                ans.style.backgroundColor = "white";
+            }
+            else{
+                ans.value = "Error";
+                ans.style.backgroundColor = "orange";
+            }
+    }
+    </script>
+</head>
+<body>
+    <input type = "text" class = "val" onblur = "showValue(this)"/> +
+    <input type = "text" class = "val" onblur = "showValue(this)"/>
+    <input type = "button" value = "=" onclick = "showValue(this)"/>
+    <input type = "text" id = "ans" readonly/>
+</body>
+</html>
