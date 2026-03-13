@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Company Portal</h1>
+    <p>Learn more about <a href="https://linkconsulting.com/">Consulting</a></p>
+    <hr class="my-4">
+</div>
+
+<div class="jumbotron text-center">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="https://linkconsulting.com/" role="button">
+            Explore Our Services
+        </a>
+    </p>
+</div>
+
+<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:11">
+    <div id="liveToast" class="toast" role="alert">
+        <div class="toast-header">
+            <strong class="me-auto">Company Portal</strong>
+            <small>Just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            Welcome to the Company Portal! Please explore our consulting services and updates.
+        </div>
+    </div>
+</div>
+
+<script>
+    var toastTrigger = document.getElementById('liveToastBtn')
+    var toastLiveExample = document.getElementById('liveToast')
+
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', function () {
+        var toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+      })
+    }
+</script>
+<div class="container mt-5">
+    <div class="row justify-content-center g-4">
+
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card text-center" style="width:18rem;">
+                <img class="card-img-top"
+                     src="https://thumbs.dreamstime.com/b/consulting-logo-business-vector-188471787.jpg?w=768"
+                     height=" 275"><br />
+                <div class="card-body">
+                    <h5 class="card-title">Professional Consulting</h5>
+                    <p class="card-text">
+                        Our expert consultants help businesses improve strategy, efficiency, and performance.
+                    </p>
+                    <a href="https://linkconsulting.com/" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <img class="card-img-top"
+                         src="/images/BusStr.jpg" height=" 275"/><br /><br />
+                    <h5 class="card-title">Business Strategy</h5>
+                    <p class="card-text">
+                        Helping organizations develop long-term strategies to achieve sustainable growth.
+                    </p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <img class="card-img-top"
+                         src="/images/mran.png" height=" 275" /><br /><br />
+                    <h5 class="card-title">Market Analysis</h5>
+                    <p class="card-text">
+                        Gain insights into market trends and customer behavior to make better decisions.
+                    </p>
+                    <a href="#" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
