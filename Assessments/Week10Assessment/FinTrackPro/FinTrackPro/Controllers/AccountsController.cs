@@ -22,7 +22,9 @@ namespace FinTrackPro.Controllers
         // GET: Accounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Account.ToListAsync());
+            return View(await _context.Account
+                        .Include(a=>a.Transactions)
+                        .ToListAsync());
         }
 
         // GET: Accounts/Details/5
@@ -60,9 +62,33 @@ namespace FinTrackPro.Controllers
             {
                 _context.Add(account);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Account created successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(account);
+        }
+
+
+        // GET: Accounts/CreateTransaction
+        public IActionResult CreateTransaction(int accountId)
+        {
+            ViewBag.AccountId = accountId;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateTransaction(Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Transactions.Add(transaction);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewBag.AccountId = transaction.AccountId;
+            return View(transaction);
         }
 
         // GET: Accounts/Edit/5
