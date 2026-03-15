@@ -7,7 +7,6 @@
     <div class="col-md-4">
 
         <form asp-action="CreateTransaction" method="post">
-            @Html.AntiForgeryToken()
 
             <input type="hidden" asp-for="AccountId" value="@ViewBag.AccountId" />
 
