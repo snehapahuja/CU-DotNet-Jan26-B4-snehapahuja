@@ -30,5 +30,21 @@ namespace VagaBond.Backend.Filters
 
             context.ExceptionHandled = true;
         }
+        
+    }
+    [Serializable]
+    internal class Invalidrating : Exception
+    {
+        public Invalidrating()
+        {
+        }
+
+        public Invalidrating(string? message) : base(message)
+        {
+        }
+
+        public Invalidrating(string? message, Exception? innerException) : base(message, innerException)
+        {
+        }
     }
 }

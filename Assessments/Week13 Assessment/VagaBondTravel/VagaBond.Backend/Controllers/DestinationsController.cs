@@ -30,6 +30,10 @@ namespace VagaBond.Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Destination destination)
         {
+            if(destination.Rating<1 || destination.Rating>5)
+            {
+                throw new Filters.Invalidrating("Rating must be between 1 and 5.");
+            }
             await _service.AddAsync(destination);
             return CreatedAtAction(nameof(GetById),
                 new { id = destination.DestinationId },
