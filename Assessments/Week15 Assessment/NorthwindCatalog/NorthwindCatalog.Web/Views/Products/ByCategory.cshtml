@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NorthwindCatalog.Services.DTOs.ProductDto>
+
+<div class="container py-4">
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info shadow-sm">No products found for this category.</div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary fw-bold">
+                                @item.ProductName
+                            </h5>
+
+                            <hr />
+
+                            <p class="mb-1">
+                                 <strong>Price:</strong> @item.UnitPrice.ToString("C")
+                            </p>
+
+                            <p class="mb-1">
+                                 <strong>Stock:</strong> @item.UnitsInStock
+                            </p>
+
+                            <p class="mt-2 text-success fw-bold">
+                                 Inventory Value: @item.InventoryValue.ToString("C")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</div>
