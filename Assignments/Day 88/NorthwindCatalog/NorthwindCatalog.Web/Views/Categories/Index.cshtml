@@ -1,0 +1,23 @@
+﻿@model IEnumerable<NorthwindCatalog.Services.DTOs.CategoryDto>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">No categories available.</div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card m-2">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.CategoryName" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.CategoryName</h5>
+                        <a asp-controller="Products" asp-action="ByCategory" asp-route-id="@item.CategoryId" class="btn btn-primary">View Products</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
